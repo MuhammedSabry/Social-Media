@@ -3,11 +3,20 @@
 <div class="container">
   <h1>You are now logged in!</h1>
   <h2><a href="{% url 'groups:all'%}">Go to Groups</a></h2>
-
-
 </div>
 
-
-
+{% if friends %}
+<h2>Friends</h2>
+{% for friend in friends %}
+    <a href="{% url 'posts:for_user' username=post.user.username %}">
+    <h3>{{ friend.username }}</h3>
+    </a>
+    <a href="{% url 'friends:change_friends' operation='remove' pk=friend.pk %}">
+    <button type="button" class="btn btn-default">Remove Friend</button>
+    </a>
+{% endfor %}
+{%else %}
+<h3>No friends</h3>
+{%endif%}
 
 {% endblock %}

@@ -2,11 +2,25 @@
 
 {% block prepost %}
 <div class="col-md-4">
-	<h1>@{{ post_user.username }}</h1>
+	<h1>{{ post_user.username }}</h1>
+	{% if user.is_authenticated and post_user != user %}
+	<form method="post">{% csrf_token %}
+		{% if not user in friends %}
+	<a href="{% url 'friends:change_friends' operation='add' pk=post_user.id %}">
+	<button type="button" class="btn btn-success">Add Friend</button>
+	</a>
+
+{%else%}
+<a href="{% url 'friends:change_friends' operation='remove' pk=post_user.id %}">
+			<button type="sbumit" class="btn btn-primary" value="Update">Remove</button>
+		</a>
+	</form>
+		{% endif %}
+	{% endif %}
 	<p>Post History</p>
 </div>
-{% endblock %}
 
+{% endblock %}
 {% block post_content %}
 <div class="col-md-8">
 	{% for post in post_list %}

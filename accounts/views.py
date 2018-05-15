@@ -1,6 +1,11 @@
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import(
+    LoginRequiredMixin,
+    PermissionRequiredMixin
+)
+from django.views import generic
 
 from . import forms
 

@@ -26,4 +26,5 @@ urlpatterns = [
     url(r"^accounts/", include("django.contrib.auth.urls")),
     url(r"^posts/", include("posts.urls", namespace="posts")),
     url(r"^groups/",include("groups.urls", namespace="groups")),
+    url(r"^friends/",include("friends.urls", namespace="friends")),
 ]

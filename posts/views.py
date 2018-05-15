@@ -9,7 +9,7 @@ from braces.views import SelectRelatedMixin
 
 from . import forms
 from . import models
-
+from friends.models import Friend
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -36,6 +36,12 @@ class UserPosts(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["post_user"] = self.post_user
+        try:
+            friend = Friend.objects.get(current_user=self.request.user)
+            friends = friend.users.all()
+        except Friend.DoesNotExist:
+            friends = []
+        context["friends"]=friends
         return context
 
 
