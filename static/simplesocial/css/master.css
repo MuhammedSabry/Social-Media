@@ -1,6 +1,14 @@
 body {
   margin: 0;
   overflow: hidden;
-  background-color: black;
-  color:white;
+  background-color: #4B4E6D;
+  color: #FFEDE1;
+  font-family: 'Courgette', cursive;
+}
+
+.btn.btn-simple {
+  color: #FFEDE1;
+}
+.navbar-brand.mynav{
+  color: #FFEDE1;
 }
