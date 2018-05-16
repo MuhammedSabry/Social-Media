@@ -22,6 +22,10 @@ class HomePage(TemplateView):
             try:
                 friend = Friend.objects.get(current_user=request.user)
                 friends = friend.users.all()
+
+            except Friend.DoesNotExist:
+                friends = []
+            try:
                 users = User.objects.all()
                 noFriends =[]
                 for user in users:
@@ -29,9 +33,8 @@ class HomePage(TemplateView):
                         pass
                     else:
                         noFriends.append(user)
-            except Friend.DoesNotExist:
-                friends = []
-                noFriends =[]
+            except:
+                noFriends=[]
             return render(request,"index.html",{'friends':friends,'nofriends':noFriends})
         return super().get(request, *args, **kwargs)
 class usersjson(TemplateView):
