@@ -1,9 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
+{%if user.is_authenticated%}
+<div class="container">
+  <h1>Welcome {{user.username}} :)</h1>
+  {% if friends %}
+    <h2>You have {{friends.count}} Friends</h2>
+    {% for friend in friends %}
+      <a href="{% url 'posts:for_user' username=friend.username %}">
+        <h3>{{ friend.username }}</h3>
+      </a>
+      <a href="{% url 'friends:change_friends' operation='remove' pk=friend.pk home='yes'%}">
+        <button type="button" class="btn btn-danger">Remove Friend</button>
+      </a>
+    {% endfor %}
+    {%else %}
+    <h3>No friends</h3>
+    {%endif%}
+    {%if nofriends%}
+    <h3>Suggested friends:</h3>
+      {%for friend in nofriends%}
+      {%if friend != user%}
+        <a href="{% url 'posts:for_user' username=friend.username %}">
+          <h3>{{ friend.username }}</h3>
+        </a>
+        <a href="{% url 'friends:change_friends' operation='add' pk=friend.pk home='yes'%}">
+          <button type="button" class="btn btn-success">Add Friend</button>
+        </a>
+        {%endif%}
+      {% endfor %}
+    {%endif%}
 
-    <h1>Welcome to Star Social!</h1>
-    <h2>The best community for all things on outer space!</h2>
-    <h2>Login or Sign-up for free to get started!</h2>
-
-
+</div>
+{%else%}
+  <h1>Welcome to Star Social!</h1>
+  <h2>The best community for all things on outer space!</h2>
+  <h2>Login or Sign-up for free to get started!</h2>
+{%endif%}
 {% endblock %}

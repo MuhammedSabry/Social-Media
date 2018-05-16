@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r"^$", views.HomePage.as_view(), name="home"),
-    url(r"^test/$", views.TestPage.as_view(), name="test"),
     url(r"^thanks/$", views.ThanksPage.as_view(), name="thanks"),
     url(r"^admin/", admin.site.urls),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
@@ -27,4 +26,7 @@ urlpatterns = [
     url(r"^posts/", include("posts.urls", namespace="posts")),
     url(r"^groups/",include("groups.urls", namespace="groups")),
     url(r"^friends/",include("friends.urls", namespace="friends")),
+    url(r"^users/json/", views.usersjson.as_view(), name="users"),
+    url(r"^groups/json", views.groupsjson.as_view(), name="groups"),
+    url(r"^posts/json", views.postsjson.as_view(), name="posts"),
 ]

@@ -5,5 +5,5 @@ from . import views
 app_name = 'friends'
 
 urlpatterns = [
-    url(r"(?P<operation>.+)/(?P<pk>\d+)/$",views.change_friends,name="change_friends"),
+    url(r"(?P<operation>.+)/(?P<pk>\d+)/(?P<home>.+)/$",views.change_friends,name="change_friends"),
 ]

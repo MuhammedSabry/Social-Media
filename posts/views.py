@@ -41,7 +41,13 @@ class UserPosts(generic.ListView):
             friends = friend.users.all()
         except Friend.DoesNotExist:
             friends = []
+        try:
+            userFriend = Friend.objects.get(current_user=self.post_user)
+            userFriends = userFriend.users.all()
+        except Friend.DoesNotExist:
+            userFriends=[]
         context["friends"]=friends
+        context["userFriends"]=userFriends
         return context
 
 
