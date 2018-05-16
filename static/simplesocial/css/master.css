@@ -2,12 +2,33 @@ body {
   margin: 0;
   overflow: hidden;
   background-color: #4B4E6D;
+  background-image: url("http://www.elementaryos-fr.org/wp-content/uploads/2013/09/wallpaper-1923233.jpg");
+  height: 100%;
+
+/* Center and scale the image nicely */
+background-repeat: no-repeat;
+background-size: 100%;
+background-size:cover;
   color: #FFEDE1;
   font-family: 'Courgette', cursive;
 }
-
+li{
+  color: white;
+}
+.help-block{
+  color: white;
+}
+.h3 , a{
+  color: white;
+}
+.h3 , a:hover{
+  color: GREEN;
+}
 .btn.btn-simple {
   color: #FFEDE1;
+}
+.btn.btn-simple:hover {
+  color: #000;
 }
 .navbar-brand.mynav{
   color: #FFEDE1;
